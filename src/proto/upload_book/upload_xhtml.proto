@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package uploader;
+
+import "upload_book/upload_to_book_item.proto";
+
+message UploadBookPageRequest {
+  string token = 1;
+  string html = 2;
+  string filename = 3;
+}
+
+message UploadPagesResponse {
+  repeated UploadBookPageRequest items = 1;
+}
+
+service Uploader {
+  rpc UploadPages(UploadBookPageRequest) returns (UploadResponse);
+  rpc UploadOnePage(UploadBookPageRequest) returns (UploadResponse);
+}

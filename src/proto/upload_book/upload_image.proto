@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package uploader;
 
+import "upload_book/upload_to_book_item.proto";
+
 message ImageChunk {
   string token = 1;
   int32 chunk_number = 2;
@@ -9,17 +11,11 @@ message ImageChunk {
   bytes data = 10;
 }
 
-message UploadResponse {
-  UploadResponseCode status = 1;
-  string message = 2;
-}
-
 message OpenUploadImageRequest {
   string token = 1;
   string book_item_uuid = 2;
   string file_name = 3;
   string sha1 = 4;
-  int32 total_chunks = 5;
 }
 
 message OpenUploadImageResponse {
@@ -28,19 +24,7 @@ message OpenUploadImageResponse {
   optional string token = 3;
 }
 
-enum UploadResponseCode {
-  SUCCESS = 0;
-
-  FILE_BROKEN = 1;
-  FILE_EXISTS = 2;
-
-  INVALID_TOKEN = 10;
-  BOOK_ITEM_NOT_FOUND = 11;
-
-  INTERNAL_SERVER_ERROR = 20;
-}
-
 service Uploader {
   rpc UploadImage(stream ImageChunk) returns (UploadResponse);
-  rpc OpenUploadImage(OpenUploadImageRequest) returns (OpenUploadImageResponse);
+  rpc OpenUploadImage(OpenUploadRequest) returns (OpenUploadImageResponse);
 }
