@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package meta_manage;
+
+message ReorderRequest {
+  // which book_series to reorder
+  string target = 1;
+
+  // the new order of the book_items
+  repeated string ids = 2;
+}
