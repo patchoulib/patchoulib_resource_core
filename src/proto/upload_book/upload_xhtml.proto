@@ -10,11 +10,11 @@ message UploadBookPageRequest {
   string filename = 3;
 }
 
-message UploadPagesResponse {
+message UploadPagesRequest {
   repeated UploadBookPageRequest items = 1;
 }
 
 service Uploader {
-  rpc UploadPages(UploadBookPageRequest) returns (UploadResponse);
+  rpc UploadPages(UploadPagesRequest) returns (UploadResponse);
   rpc UploadOnePage(UploadBookPageRequest) returns (UploadResponse);
 }

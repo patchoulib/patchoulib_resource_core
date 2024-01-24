@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package meta_manage;
+
+message AddBookSeries {
+  string main_title = 1;
+  optional string japanese_title = 2;
+  repeated string other_titles = 3;
+  repeated string authors = 4;
+  repeated string illustrators = 5;
+  optional string description = 6;
+  repeated string tags = 7;
+}

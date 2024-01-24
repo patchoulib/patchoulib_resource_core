@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package uploader;
+
+import "upload_book/upload_to_book_item.proto";
+
+message UploadFullBookRequest {
+  string token = 1;
+  bytes epub = 2;
+  string filename = 3;
+}
+
+message UploadFullBookResponse {
+  UploadResponseCode code = 1;
+  string message = 2;
+}

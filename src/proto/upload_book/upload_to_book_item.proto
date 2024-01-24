@@ -25,3 +25,12 @@ message UploadResponse {
   UploadResponseCode code = 1;
   string message = 2;
 }
+
+message CloseUploadRequest {
+  string token = 1;
+}
+
+message CloseUploadResponse {
+  UploadResponseCode code = 1;
+  string message = 2;
+}

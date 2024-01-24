@@ -41,13 +41,6 @@ pub struct Model {
     /// Stored as JSON in postgresql
     pub nav_points: NavPoints,
 
-    // EPUB packaging information
-    #[sea_orm(column_type = "Json")]
-    /// ## All files' relative path in the epub.
-    ///
-    /// This pattern is used to generate the `content.opf` file in the epub.
-    pub manifest: Vec<String>,
-
     pub status: BookItemStatus,
 
     /// When the book is being processed, this field is true.
@@ -119,7 +112,7 @@ pub enum BookItemStatus {
 
 #[derive(Serialize, Deserialize, Clone,  PartialEq, Debug)]
 pub struct NavPoint {
-    pub href: String,
+    pub href: String,   // sha1
     pub label: String,
 }
 
