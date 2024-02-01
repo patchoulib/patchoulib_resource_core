@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package get_book;
+
+import "concepts/book_item.proto";
+
+message GetBookItemRequest {
+  string uuid = 1;
+}
+
+message GetBookItemMetaResponse {
+  BookItemMeta meta = 1;
+  ResponseStatus status = 2;
+}
+
+enum ResponseStatus {
+  OK = 0;
+  NOT_FOUND = 1;
+  INTERNAL_ERROR = 2;
+}
+
+service GetBookService {
+  rpc GetBookItemMeta(GetBookItemRequest) returns (GetBookItemMetaResponse);
+}
+

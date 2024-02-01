@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message BookItemMeta {
+  string uuid = 1;
+  string belongs_to = 2;
+  string cover = 3;
+  string title = 4;
+  string nav_points = 5;
+  BookItemStatus status = 6;
+  bool processing_lock = 7;
+  string additional_info = 8;
+  string epub_path = 9;
+  int64 epub_version = 10;
+  int64 book_version = 11;
+}
+
+enum BookItemStatus {
+  INITIALIZING = 0;
+  READY = 1;
+  ERROR = 2;
+  PROCESSING = 3;
+}

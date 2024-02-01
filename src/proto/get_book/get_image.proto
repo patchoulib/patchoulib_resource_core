@@ -23,7 +23,7 @@ message GetImageUrlResponse {
   GetImageResponseCode code = 2;
 }
 
-service GetImageService {
+service GetBookService {
   rpc GetImageStream(GetImageRequest) returns (stream GetImageStreamResponse);
   rpc GetImageUrl(GetImageRequest) returns (GetImageUrlResponse);
 }

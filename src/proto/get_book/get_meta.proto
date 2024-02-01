@@ -2,22 +2,10 @@ syntax = "proto3";
 
 package get_book;
 
+import "concepts/book_series.proto";
+
 message GetBookSeriesRequest {
   string uuid = 1;
-}
-
-message BookMeta {
-  string uuid = 1;
-  string main_title = 2;
-  string japanese_title = 3;
-  repeated string alias = 4;
-  repeated string author = 5;
-  repeated string illustrator = 6;
-  string description = 7;
-  repeated string tags = 8;
-  repeated string resources = 9;
-  string cover_from_item = 10;
-  string custom_properties = 11;
 }
 
 enum ResponseStatus {
@@ -31,6 +19,6 @@ message GetBookSeriesResponse {
   optional BookMeta book_meta = 2;
 }
 
-service GetBookSeries {
-  rpc GetBookSeries(GetBookSeriesRequest) returns (GetBookSeriesResponse);
+service GetBookService {
+  rpc GetBookSeriesMeta(GetBookSeriesRequest) returns (GetBookSeriesResponse);
 }

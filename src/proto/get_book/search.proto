@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package get_book;
+
+import "concepts/book_series.proto";
+
+message SearchRequest {
+  string query = 1;
+}
+
+enum SearchCode {
+  SEARCH_NOT_AVAILABLE = 0;
+  SEARCH_OK = 1;
+}
+
+message SearchResponse {
+  SearchCode code = 1;
+  repeated BookMeta books = 2;
+}
+
+service SearchService {
+  rpc Search(SearchRequest) returns (SearchResponse);
+}
