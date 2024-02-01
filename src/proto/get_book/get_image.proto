@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package get_book;
+
+
+
+message GetImageRequest {
+  string image_path = 1;
+}
+
+enum GetImageResponseCode {
+  OK = 0;
+  IMAGE_NOT_FOUND = 1;
+}
+
+message GetImageStreamResponse {
+  bytes image = 1;
+  GetImageResponseCode code = 2;
+}
+
+message GetImageUrlResponse {
+  string image_url = 1;
+  GetImageResponseCode code = 2;
+}
+
+service GetImageService {
+  rpc GetImageStream(GetImageRequest) returns (stream GetImageStreamResponse);
+  rpc GetImageUrl(GetImageRequest) returns (GetImageUrlResponse);
+}

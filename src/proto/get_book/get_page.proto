@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package get_book;
+
+message GetBookPageRequest {
+  string book_item_id = 1;
+  string navigation_point = 2;
+}
+
+enum GetBookPageResponse_Status {
+  OK = 0;
+  NOT_FOUND = 1;
+
+  UNAVAILABLE = 2;  // The book is being processed.
+  INTERNAL_ERROR = 3;
+}
+
+message GetBookPageResponse {
+  GetBookPageResponse_Status status = 1;
+  string page_content = 2;  // "" if status != OK
+}
+
+service GetBookService {
+  rpc GetBookPage(GetBookPageRequest) returns (GetBookPageResponse);
+}
