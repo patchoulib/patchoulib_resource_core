@@ -1,2 +1,1 @@
-mod simplifyHtml;
-mod simplifyTags;
+mod clean_html;
