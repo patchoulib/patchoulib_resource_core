@@ -45,6 +45,23 @@ fn judge(node: Node) -> bool {
     }
 }
 
-fn clean_html(mut tree: Tree<Node>) -> Tree<Node> {
-    let new_tree =
+fn clean_html(tree: Tree<Node>) -> Tree<Node> {
+    let mut new_tree = Tree::new(Node::Document);
+    for node in tree.nodes() {
+        let mut new_root = new_tree.root_mut();
+        match node {
+            Node::Element(element) => {
+                let tag = element.name();
+                if KEPT_TAGS.contains(&tag) {
+                    new_root.append(Node::Element(element));
+                }
+            },
+            Node::Text(text) => {
+                new_root.append(Node::Text(text));
+            },
+            _ => {},
+        }
+    }
+
+    todo!()
 }
