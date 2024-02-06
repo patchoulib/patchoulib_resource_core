@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package get_book;
+
+enum Status {
+  OK = 0;
+  NOT_FOUND = 1;
+}
+
+message Request {
+  string uuid = 1;  // the uuid of book item
+}
+
+message Response {
+  Status status = 1;
+  string url = 2;
+}
+
+service GetBook {
+  rpc GetEpub(Request) returns (Response);
+}
