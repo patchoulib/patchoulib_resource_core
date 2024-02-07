@@ -7,3 +7,4 @@ mod operate_log;
 pub use book_item::BookItem;
 pub use book_series::BookSeries;
 pub use file_mapping::FileMapping;
+pub use book_item::PackageFormat;

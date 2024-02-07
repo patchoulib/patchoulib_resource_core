@@ -8,32 +8,32 @@ use uuid::Uuid;
 #[sea_orm(table_name = "book_series")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    series_id: Uuid,
+    pub series_id: Uuid,
 
     #[sea_orm(index, unique)]
-    main_title: String,
+    pub main_title: String,
 
     #[sea_orm(index, unique)]
-    japanese_title: String,
+    pub japanese_title: String,
 
     #[sea_orm(column_type = "Json")]
-    alias: Vec<String>,
+    pub alias: Vec<String>,
 
     #[sea_orm(column_type = "Json")]
-    authors: Vec<String>,
+    pub authors: Vec<String>,
 
     #[sea_orm(column_type = "Json")]
-    illustrator: Vec<String>,
+    pub illustrator: Vec<String>,
 
     #[sea_orm(column_type = "Text")]
-    description: String,
+    pub description: String,
 
     #[sea_orm(column_type = "Json")]
-    tags: Vec<String>,
+    pub tags: Vec<String>,
 
-    cover_from_item: Uuid,
+    pub cover_from_item: Uuid,
 
-    custom_properties: String, // json
+    pub custom_properties: String, // json
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

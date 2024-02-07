@@ -105,9 +105,7 @@ pub enum BookItemStatus {
 /// standard: epub3
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct PackageFormat {
-    pub title: Option<String>,
     pub creator: Option<String>,
-    pub language: Option<String>,
     pub publisher: Option<String>,
     pub rights: Option<String>,
     pub description: Option<String>,
