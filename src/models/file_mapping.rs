@@ -11,9 +11,11 @@ pub struct Model {
     pub virtual_path: String,
 
     #[sea_orm(primary_key)]
-    pub sha1: String,
+    pub hash: String,
 
-    #[sea_orm(index)]
+    /// Must be not null.
+    /// This column is used to garbage collect files that are not used.
+    /// Foreign key to the items table.
     pub belongs_to_item: Uuid,
 
     pub file_extension: String,
@@ -23,3 +25,5 @@ pub struct Model {
 pub enum Relation {}
 
 impl ActiveModelBehavior for ActiveModel {}
+
+pub type FileMapping = Model;

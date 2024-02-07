@@ -34,11 +34,11 @@ pub struct Model {
     /// For some books, the name is the same as the book series.
     pub item_name: String,
 
-    #[sea_orm(column_type = "Json")]
+
     /// ## The pages' relative path in the epub.
     ///
     /// Stored as JSON in postgresql
-    pub nav_points: NavPoints,
+    pub nav_points: Vec<i64>,
 
     pub status: BookItemStatus,
 
@@ -113,47 +113,6 @@ pub enum BookItemStatus {
 pub struct NavPoint {
     pub href: String, // sha1
     pub label: String,
-}
-
-#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
-pub struct NavPoints(pub Vec<NavPoint>);
-impl Into<Value> for NavPoints {
-    fn into(self) -> sea_orm::Value {
-        let result = serde_json::to_value(self);
-        match result {
-            Ok(value) => Value::Json(Some(Box::from(value))),
-            Err(_) => Value::Json(None),
-        }
-    }
-}
-
-impl TryGetableFromJson for NavPoints {}
-
-impl ValueType for NavPoints {
-    fn try_from(v: Value) -> Result<Self, ValueTypeErr> {
-        match v {
-            Value::Json(Some(v)) => {
-                let result = serde_json::from_value(*v);
-                match result {
-                    Ok(value) => Ok(value),
-                    Err(_) => Err(ValueTypeErr {}),
-                }
-            }
-            _ => Err(ValueTypeErr {}),
-        }
-    }
-
-    fn type_name() -> String {
-        "Json".to_string()
-    }
-
-    fn array_type() -> ArrayType {
-        ArrayType::Json
-    }
-
-    fn column_type() -> ColumnType {
-        ColumnType::Json
-    }
 }
 
 /// ## The `content.opf` file in the epub

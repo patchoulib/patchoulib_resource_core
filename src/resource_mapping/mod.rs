@@ -15,4 +15,8 @@ impl ResourceMapping {
     pub fn get(db_connection: Arc<DatabaseConnection>, hash: String) -> String {
         todo!()
     }
+
+    pub fn set(db_connection: Arc<DatabaseConnection>, hash: String, value: String) -> Result<(), String> {
+        todo!()
+    }
 }
