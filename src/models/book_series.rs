@@ -1,11 +1,6 @@
 use sea_orm::{
-    ActiveModelBehavior,
-    DeriveEntityModel,
-    DeriveRelation,
-    EnumIter,
-    DerivePrimaryKey,
-    PrimaryKeyTrait,
-    EntityTrait
+    ActiveModelBehavior, DeriveEntityModel, DerivePrimaryKey, DeriveRelation, EntityTrait,
+    EnumIter, PrimaryKeyTrait,
 };
 use uuid::Uuid;
 
@@ -41,7 +36,7 @@ pub struct Model {
 
     cover_from_item: Uuid,
 
-    custom_properties: String,  // json
+    custom_properties: String, // json
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

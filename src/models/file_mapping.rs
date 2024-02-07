@@ -1,4 +1,7 @@
-use sea_orm::{DeriveEntityModel, DeriveRelation, EnumIter, EntityTrait, DerivePrimaryKey, PrimaryKeyTrait, ActiveModelBehavior};
+use sea_orm::{
+    ActiveModelBehavior, DeriveEntityModel, DerivePrimaryKey, DeriveRelation, EntityTrait,
+    EnumIter, PrimaryKeyTrait,
+};
 use uuid::Uuid;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]

@@ -1,10 +1,9 @@
 use sea_orm::entity::prelude::*;
-use sea_orm::TryGetableFromJson;
+use sea_orm::sea_query::{ArrayType, ValueType, ValueTypeErr};
+use sea_orm::ActiveModelBehavior;
 use sea_orm::EntityTrait;
 use sea_orm::PrimaryKeyTrait;
-use sea_orm::ActiveModelBehavior;
-use sea_orm::sea_query::{ArrayType, ValueType, ValueTypeErr};
-
+use sea_orm::TryGetableFromJson;
 
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -110,14 +109,13 @@ pub enum BookItemStatus {
     Processing,
 }
 
-#[derive(Serialize, Deserialize, Clone,  PartialEq, Debug)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct NavPoint {
-    pub href: String,   // sha1
+    pub href: String, // sha1
     pub label: String,
 }
 
-
-#[derive(Serialize, Deserialize, Clone,  PartialEq, Debug)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct NavPoints(pub Vec<NavPoint>);
 impl Into<Value> for NavPoints {
     fn into(self) -> sea_orm::Value {
@@ -138,10 +136,10 @@ impl ValueType for NavPoints {
                 let result = serde_json::from_value(*v);
                 match result {
                     Ok(value) => Ok(value),
-                    Err(e) => Err(ValueTypeErr{}),
+                    Err(_) => Err(ValueTypeErr {}),
                 }
             }
-            _ => Err(ValueTypeErr{}),
+            _ => Err(ValueTypeErr {}),
         }
     }
 
@@ -157,8 +155,6 @@ impl ValueType for NavPoints {
         ColumnType::Json
     }
 }
-
-
 
 /// ## The `content.opf` file in the epub
 /// standard: epub3

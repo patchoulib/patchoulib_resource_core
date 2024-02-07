@@ -1,14 +1,14 @@
 pub mod connections;
 pub mod parser;
 
-use std::sync::Arc;
+pub use parser::db_config::DatabaseConfig;
+pub use parser::redis_config::RedisConfig;
+pub use parser::s3_config::S3Config;
 use redis::Connection;
 use s3::Bucket;
 use sea_orm::DatabaseConnection;
 use serde::Deserialize;
-pub use parser::db_config::DatabaseConfig;
-pub use parser::s3_config::S3Config;
-pub use parser::redis_config::RedisConfig;
+use std::sync::Arc;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Config {
@@ -20,5 +20,5 @@ pub struct Config {
 pub struct Connections {
     pub db: Arc<DatabaseConnection>,
     pub s3: Arc<Bucket>,
-    pub redis: Arc<Connection>
+    pub redis: Arc<Connection>,
 }

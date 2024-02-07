@@ -13,10 +13,7 @@ impl DatabaseConfig {
     pub fn get_database_url(&self) -> String {
         format!(
             "postgres://{}:{}@{}/{}",
-            self.database_username,
-            self.database_password,
-            self.database_url,
-            self.database_name
+            self.database_username, self.database_password, self.database_url, self.database_name
         )
     }
 }

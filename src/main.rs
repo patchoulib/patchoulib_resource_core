@@ -1,11 +1,11 @@
 mod models;
 
 mod config;
-mod html_compile;
+mod config_loader;
 mod epub_packager;
+mod html_compile;
 mod meta_manage;
 mod resource_mapping;
-mod config_loader;
 
 fn main() {
     println!("Hello, world!");
