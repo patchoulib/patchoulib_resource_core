@@ -31,9 +31,6 @@ pub struct Model {
     #[sea_orm(column_type = "Json")]
     tags: Vec<String>,
 
-    #[sea_orm(column_type = "Json")]
-    resources: Vec<Uuid>,
-
     cover_from_item: Uuid,
 
     custom_properties: String, // json

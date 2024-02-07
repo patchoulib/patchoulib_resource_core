@@ -14,11 +14,8 @@ pub struct Model {
     #[sea_orm(primary_key)]
     pub unique_id: Uuid,
 
+    #[sea_orm(index)]
     /// ## which book series this book item belongs to
-    ///
-    /// + index: true
-    /// + not_null: true
-    /// + foreign_key: true
     pub belongs_to: Uuid,
 
     /// ## the order of this book in the series
@@ -32,12 +29,6 @@ pub struct Model {
     ///
     /// For some books, the name is the same as the book series.
     pub item_name: String,
-
-
-    /// ## The pages' relative path in the epub.
-    ///
-    /// Stored as JSON in postgresql
-    pub nav_points: Vec<i64>,
 
     pub status: BookItemStatus,
 
@@ -69,8 +60,10 @@ pub struct Model {
     pub book_version: i64,
 }
 
-#[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
-pub enum Relation {}
+#[derive(Copy, Clone, Debug, EnumIter)]
+pub enum Relation {
+    BookSeries,
+}
 
 impl ActiveModelBehavior for ActiveModel {}
 
@@ -108,12 +101,6 @@ pub enum BookItemStatus {
     Processing,
 }
 
-#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
-pub struct NavPoint {
-    pub href: String, // sha1
-    pub label: String,
-}
-
 /// ## The `content.opf` file in the epub
 /// standard: epub3
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
@@ -130,4 +117,21 @@ pub struct PackageFormat {
     pub source: Option<String>,
     pub type_: Option<String>,
     pub format: Option<String>,
+}
+
+impl RelationTrait for Relation {
+    fn def(&self) -> RelationDef {
+        match self {
+            Self::BookSeries => Entity::belongs_to(super::book_series::Entity)
+                .from(Column::BelongsTo)
+                .to(super::book_series::Column::SeriesId)
+                .into(),
+        }
+    }
+}
+
+impl Related<super::book_series::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::BookSeries.def()
+    }
 }

@@ -1,4 +1,7 @@
-use sea_orm::{DeriveEntityModel, EnumIter, DerivePrimaryKey, PrimaryKeyTrait, ActiveModelBehavior, EntityTrait, Related, RelationDef, RelationTrait};
+use sea_orm::{
+    ActiveModelBehavior, DeriveEntityModel, DerivePrimaryKey, EntityTrait, EnumIter,
+    PrimaryKeyTrait, Related, RelationDef, RelationTrait,
+};
 use uuid::Uuid;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
@@ -7,6 +10,7 @@ pub struct Model {
     #[sea_orm(primary_key)]
     pub id: i64,
 
+    #[sea_orm(index)]
     /// Foreign key to the items table
     pub belongs_to_item: Uuid,
 
@@ -26,7 +30,7 @@ impl ActiveModelBehavior for ActiveModel {}
 #[derive(Copy, Clone, Debug, EnumIter)]
 pub enum Relation {
     BookItem,
-    FileMapping
+    FileMapping,
 }
 
 impl RelationTrait for Relation {
