@@ -1,7 +1,4 @@
-use sea_orm::{
-    ActiveModelBehavior, DeriveEntityModel, DerivePrimaryKey, DeriveRelation, EntityTrait,
-    EnumIter, PrimaryKeyTrait,
-};
+use sea_orm::{ActiveModelBehavior, DeriveEntityModel, DerivePrimaryKey, DeriveRelation, EntityTrait, EnumIter, PrimaryKeyTrait, Related, RelationDef, RelationTrait};
 use uuid::Uuid;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
@@ -27,3 +24,9 @@ pub enum Relation {}
 impl ActiveModelBehavior for ActiveModel {}
 
 pub type FileMapping = Model;
+
+impl Related<super::nav_point::Entity> for Entity {
+    fn to() -> RelationDef {
+        super::nav_point::Relation::FileMapping.def()
+    }
+}

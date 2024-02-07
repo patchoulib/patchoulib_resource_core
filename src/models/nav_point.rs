@@ -49,9 +49,3 @@ impl Related<super::book_item::Entity> for Entity {
         Relation::BookItem.def()
     }
 }
-
-impl Related<super::file_mapping::Entity> for Entity {
-    fn to() -> RelationDef {
-        Relation::FileMapping.def()
-    }
-}

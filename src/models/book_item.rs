@@ -1,9 +1,8 @@
 use sea_orm::entity::prelude::*;
-use sea_orm::sea_query::{ArrayType, ValueType, ValueTypeErr};
+use sea_orm::sea_query::ValueType;
 use sea_orm::ActiveModelBehavior;
 use sea_orm::EntityTrait;
 use sea_orm::PrimaryKeyTrait;
-use sea_orm::TryGetableFromJson;
 
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
