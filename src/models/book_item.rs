@@ -1,5 +1,5 @@
 use sea_orm::entity::prelude::*;
-use sea_orm::{ColumnTrait, TryGetableFromJson};
+use sea_orm::TryGetableFromJson;
 use sea_orm::EntityTrait;
 use sea_orm::PrimaryKeyTrait;
 use sea_orm::ActiveModelBehavior;

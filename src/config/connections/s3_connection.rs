@@ -5,8 +5,8 @@ use s3::error::S3Error;
 use s3::region::Region;
 use crate::config::S3Config;
 
-pub async fn get_connection(config: S3Config)
-    -> Result<Arc<Bucket>, S3Error> {
+pub async fn get_s3_connection(config: S3Config) ->
+Result<Arc<Bucket>, S3Error> {
     let region = Region::Custom {
         region: config.region,
         endpoint: config.endpoint,

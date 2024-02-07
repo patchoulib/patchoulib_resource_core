@@ -1,3 +1,6 @@
+use std::sync::Arc;
+use sea_orm::DatabaseConnection;
+
 mod hash;
 mod query;
 mod setter;
@@ -9,5 +12,7 @@ impl ResourceMapping {
         todo!()
     }
 
-    pub fn get
+    pub fn get(db_connection: Arc<DatabaseConnection>, hash: String) -> String {
+        todo!()
+    }
 }

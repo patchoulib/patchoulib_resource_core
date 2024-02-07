@@ -1,7 +1,8 @@
-mod connections;
+pub mod connections;
 pub mod parser;
 
 use std::sync::Arc;
+use redis::Connection;
 use s3::Bucket;
 use sea_orm::DatabaseConnection;
 use serde::Deserialize;
@@ -19,5 +20,5 @@ pub struct Config {
 pub struct Connections {
     pub db: Arc<DatabaseConnection>,
     pub s3: Arc<Bucket>,
-
+    pub redis: Arc<Connection>
 }
