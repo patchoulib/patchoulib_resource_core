@@ -3,7 +3,7 @@ use s3::bucket::Bucket;
 use s3::creds::Credentials;
 use s3::error::S3Error;
 use s3::region::Region;
-use crate::utils::config_parser::S3Config;
+use crate::config::S3Config;
 
 pub async fn get_connection(config: S3Config)
     -> Result<Arc<Bucket>, S3Error> {
